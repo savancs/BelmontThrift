@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/searchET"
+        android:layout_width="341dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/edittextstyle"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/searchIV"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="23dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_search" />
+
+    <ListView
+        android:id="@+id/historyLV"
+        android:layout_width="412dp"
+        android:layout_height="197dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rsTV" />
+
+    <TextView
+        android:id="@+id/rsTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="9dp"
+        android:text="Recently Searched"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchET" />
+
+    <TextView
+        android:id="@+id/exploreTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="12dp"
+        android:text="For Sale"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/fsIV1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/fsIV1"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginBottom="18dp"
+        android:padding="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/fsIV3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/blueshirt" />
+
+    <ImageView
+        android:id="@+id/fsIV2"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/fsIV4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/greenblouse" />
+
+    <ImageView
+        android:id="@+id/fsIV3"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/navBarLL"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/pumahoodie" />
+
+    <ImageView
+        android:id="@+id/fsIV4"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/navBarLL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/bonjovishirt" />
+
+    <LinearLayout
+        android:id="@+id/navBarLL"
+        android:layout_width="409dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/hhomeIV"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/img_home" />
+
+        <ImageView
+            android:id="@+id/hcartIV"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/cart" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
