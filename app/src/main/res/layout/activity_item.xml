@@ -31,11 +31,21 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/borderIV"
+        android:layout_width="329dp"
+        android:layout_height="326dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemTV"
+        app:srcCompat="@drawable/edittextstyle" />
+
+    <ImageView
+        android:id="@+id/itemIV"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="39dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemTV"
         app:srcCompat="@drawable/greenblouse" />
@@ -55,18 +65,21 @@
         android:id="@+id/descTV"
         android:layout_width="274dp"
         android:layout_height="78dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
         android:text="@string/description"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/itemIV" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="61dp"
+        android:id="@+id/likeIV"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="52dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/itemIV"
         app:srcCompat="@drawable/img_favorite" />
 
     <TextView
@@ -77,7 +90,7 @@
         android:layout_marginEnd="68dp"
         android:text="100"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/likeIV" />
 
     <Button
         android:id="@+id/addButton"
@@ -93,6 +106,17 @@
         android:textSize="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/descTV" />
+
+    <ImageView
+        android:id="@+id/redLikeIV"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="52dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemIV"
+        app:srcCompat="@drawable/redheart" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
