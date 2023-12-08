@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +28,8 @@ public class ItemActivity extends AppCompatActivity {
     TextView  numLikes;
 
     Button addToCart;
+    DatabaseReference ref;
+    //FirebaseDatabase cartDB;
 
 
 
@@ -35,6 +38,12 @@ public class ItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //DatabaseReference ref = database.getReference("Cart");
+        ref = database.getReference("Cart");
+        //cartDB = FirebaseDatabase.getInstance();
+
         homeIm = findViewById(R.id.ihomeIV);
         cartIm =findViewById(R.id.icartIV);
         likeIm = findViewById(R.id.likeIV);
@@ -45,7 +54,7 @@ public class ItemActivity extends AppCompatActivity {
         cartIm.setOnClickListener(cartListener);
         likeIm.setOnClickListener(likeListener);
         addToCart = findViewById(R.id.addButton);
-        addToCart.setOnClickListener(cartListener);
+        addToCart.setOnClickListener(addListener);
 
 
     }
@@ -83,4 +92,19 @@ public class ItemActivity extends AppCompatActivity {
 
         }
     };
+    private final View.OnClickListener addListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String item = "Blouse";
+            ref.child(ref.push().getKey()).setValue(item);
+            //int price = 5;
+            //addToCart(item);
+            Toast.makeText(ItemActivity.this, "Item successfully added to cart.", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    public void addToCart(String word){
+        ref.child(ref.push().getKey()).setValue(word);
+
+    }
 }

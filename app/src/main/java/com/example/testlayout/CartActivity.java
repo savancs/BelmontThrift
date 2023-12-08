@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.firebase.Firebase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,9 +23,8 @@ import java.util.List;
 public class CartActivity extends AppCompatActivity {
 
     ImageView homeIm;
+
     private DatabaseReference mDatabase;
-
-
 
 
 
@@ -32,18 +33,19 @@ public class CartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        homeIm =findViewById(R.id.chomeIV);
+        homeIm = findViewById(R.id.chomeIV);
         homeIm.setOnClickListener(homeListener);
 
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //ref = database.getReference("Cart");
         mDatabase = database.getReference("cart");
 
 
 
-        mDatabase.orderByChild("cart").addListenerForSingleValueEvent(new ValueEventListener() {
+/*        mDatabase.orderByChild("cart").addListenerForSingleValueEvent(new ValueEventListener() {
 
-// I like apple piecc
-            //pie
+
                                                                           @Override
                                                                           public void onDataChange(@NonNull DataSnapshot snapshot) {
 //                                                                              Iterable<DataSnapshot> data = snapshot.getChildren();
@@ -64,6 +66,7 @@ public class CartActivity extends AppCompatActivity {
                                                                           }
                                                                       }
         );
+    }*/
     }
 
     private final View.OnClickListener homeListener = new View.OnClickListener() {
@@ -73,4 +76,5 @@ public class CartActivity extends AppCompatActivity {
             startActivity(intent);
         }
     };
+
 }

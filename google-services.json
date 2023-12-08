@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "186691265763",
+    "project_id": "belmontthrift-c7f04",
+    "storage_bucket": "belmontthrift-c7f04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186691265763:android:2bfb1069bab8f5ad46d1d6",
+        "android_client_info": {
+          "package_name": "com.example.testlayout"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeTA_PcU8-HdHQx63GZPX_VIX4GSk7yic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

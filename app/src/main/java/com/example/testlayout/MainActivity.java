@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<String> historyList;
     ArrayAdapter<String> adapter;
-    Random rand = new Random();
 
 
     @Override
@@ -84,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
             if(searchValue.isEmpty()){
                 Toast.makeText(MainActivity.this, "No search results.", Toast.LENGTH_LONG).show();
             } else {
-
                 historyList.add(searchValue);
                 adapter.add(searchValue);
                 adapter.notifyDataSetChanged();
