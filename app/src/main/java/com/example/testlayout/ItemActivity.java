@@ -95,7 +95,7 @@ public class ItemActivity extends AppCompatActivity {
 
         }
     };
-    private final View.OnClickListener addListener = newp View.OnClickListener() {
+    private final View.OnClickListener addListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             ref.child(ref.push().getKey()).setValue(item);
