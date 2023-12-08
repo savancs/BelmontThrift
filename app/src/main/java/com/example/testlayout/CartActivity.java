@@ -25,6 +25,8 @@ public class CartActivity extends AppCompatActivity {
     ImageView homeIm;
 
     private DatabaseReference mDatabase;
+    private List<CartItem> CartItemList;
+    private adapter adapter;
 
 
 
@@ -39,15 +41,32 @@ public class CartActivity extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         //ref = database.getReference("Cart");
-        mDatabase = database.getReference("cart");
+        mDatabase = database.getReference("THE CART");
+
+        ListView ProductLV = findViewById(R.id.cartLV);
+
+        CartItemList = new ArrayList<>();
+        adapter = new adapter(this, CartItemList);
+        ProductLV.setAdapter(adapter);
 
 
 
-/*        mDatabase.orderByChild("cart").addListenerForSingleValueEvent(new ValueEventListener() {
+
+        mDatabase.orderByChild("cart").addListenerForSingleValueEvent(new ValueEventListener() {
 
 
                                                                           @Override
                                                                           public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                              CartItemList.clear();
+                                                                              for (DataSnapshot snap : snapshot.getChildren()) {
+                                                                                  CartItem cartItem = snap.getValue(CartItem.class);
+                                                                                  CartItemList.add(cartItem);
+                                                                              }
+                                                                          }
+
+
+
+//
 //                                                                              Iterable<DataSnapshot> data = snapshot.getChildren();
 //                                                                              int lastElement = (int) snapshot.getChildrenCount();
 //                                                                              Iterator<DataSnapshot> it = data.iterator();
@@ -58,7 +77,7 @@ public class CartActivity extends AppCompatActivity {
 //                                                                              int random = rand.nextInt(retrieveListFromFB.size());
 //                                                                              String word = retrieveListFromFB.get(random);
 //                                                                              // Toast.makeText(MainActivity.this, "The word is: " + word, Toast.LENGTH_SHORT).show();
-                                                                          }
+                                                                         // }
 
                                                                           @Override
                                                                           public void onCancelled(@NonNull DatabaseError error) {
@@ -66,7 +85,6 @@ public class CartActivity extends AppCompatActivity {
                                                                           }
                                                                       }
         );
-    }*/
     }
 
     private final View.OnClickListener homeListener = new View.OnClickListener() {
