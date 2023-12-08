@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -23,7 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageView cartIm;
+    ImageView cartIm, searchIm;
+    EditText searchEt;
     ImageView itemIm1, itemIm2, itemIm3, itemIm4;
     Random rand = new Random();
 
@@ -33,12 +35,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         cartIm = findViewById(R.id.hcartIV);
+        searchIm = findViewById(R.id.searchIV);
+        searchEt = findViewById(R.id.searchET);
         itemIm1 = findViewById(R.id.fsIV1);
         itemIm2 = findViewById(R.id.fsIV2);
         itemIm3 = findViewById(R.id.fsIV3);
         itemIm4 = findViewById(R.id.fsIV4);
 
         cartIm.setOnClickListener(cartListener);
+        searchIm.setOnClickListener(searchListener);
         itemIm1.setOnClickListener(itemListener);
         itemIm2.setOnClickListener(itemListener);
         itemIm3.setOnClickListener(itemListener);
@@ -46,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
 }
 
-            private final View.OnClickListener cartListener = new View.OnClickListener() {
+    private final View.OnClickListener cartListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(MainActivity.this, CartActivity.class);
@@ -58,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             Intent intent = new Intent(MainActivity.this, ItemActivity.class);
             startActivity(intent);
+        }
+    };
+    private final View.OnClickListener searchListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //this needs to take the text in searchEt
+            //and pluck it into the firebase db for history
         }
     };
 }
