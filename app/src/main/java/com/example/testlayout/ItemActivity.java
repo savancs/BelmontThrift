@@ -29,6 +29,7 @@ public class ItemActivity extends AppCompatActivity {
 
     Button addToCart;
     DatabaseReference ref;
+    CartItem item;
     //FirebaseDatabase cartDB;
 
 
@@ -43,6 +44,8 @@ public class ItemActivity extends AppCompatActivity {
         //DatabaseReference ref = database.getReference("Cart");
         ref = database.getReference("Cart");
         //cartDB = FirebaseDatabase.getInstance();
+
+        item = new CartItem("Blouse", 5);
 
         homeIm = findViewById(R.id.ihomeIV);
         cartIm =findViewById(R.id.icartIV);
@@ -92,10 +95,9 @@ public class ItemActivity extends AppCompatActivity {
 
         }
     };
-    private final View.OnClickListener addListener = new View.OnClickListener() {
+    private final View.OnClickListener addListener = newp View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            String item = "Blouse";
             ref.child(ref.push().getKey()).setValue(item);
             //int price = 5;
             //addToCart(item);
@@ -103,8 +105,8 @@ public class ItemActivity extends AppCompatActivity {
         }
     };
 
-    public void addToCart(String word){
-        ref.child(ref.push().getKey()).setValue(word);
+ /*   public void addToCart(CartItem clothing){
+        ref.child(ref.push().getKey()).setValue(item);
 
-    }
+    }*/
 }
