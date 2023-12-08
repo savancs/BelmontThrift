@@ -42,7 +42,7 @@ public class CartActivity extends AppCompatActivity {
 
         mDatabase.orderByChild("cart").addListenerForSingleValueEvent(new ValueEventListener() {
 
-// I like apple pie
+// I like apple piecc
             //pie
                                                                           @Override
                                                                           public void onDataChange(@NonNull DataSnapshot snapshot) {
