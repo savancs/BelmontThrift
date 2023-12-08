@@ -41,7 +41,7 @@ public class CartActivity extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         //ref = database.getReference("Cart");
-        mDatabase = database.getReference("THE CART");
+        mDatabase = database.getReference("cart");
 
         ListView ProductLV = findViewById(R.id.cartLV);
 
