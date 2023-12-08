@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "19040583724",
+    "firebase_url": "https://belmontthrift-b9759-default-rtdb.firebaseio.com",
+    "project_id": "belmontthrift-b9759",
+    "storage_bucket": "belmontthrift-b9759.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19040583724:android:0e9e8d3a3cfaf3bd4ed189",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkwJc4JsGcRzdTZymI2vD_p3djpHyMfzw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19040583724:android:8844a7cec7ac10404ed189",
+        "android_client_info": {
+          "package_name": "com.example.testlayout"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkwJc4JsGcRzdTZymI2vD_p3djpHyMfzw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
