@@ -58,4 +58,5 @@ dependencies {
 
     // FirebaseUI for Cloud Storage
     implementation("com.firebaseui:firebase-ui-storage:8.0.2")
+
 }
