@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -33,7 +34,7 @@ public class CartActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private List<CartItem> CartItemList;
 
-    private ArrayList<CartItem> cartList;
+    //private ArrayList<CartItem> cartList;
     //private adapter adapter;
 
     ArrayAdapter<CartItem> adapter;
@@ -51,19 +52,23 @@ public class CartActivity extends AppCompatActivity {
 
         //new stuff just added
         CartItemList = new ArrayList<>();
-        adapter = new adapter(this,CartItemList);
-        cartLV.setAdapter(adapter);
-
-        //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        //adapter = new adapter(this, CartItemList);
         //cartLV.setAdapter(adapter);
 
 
+
+
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, CartItemList);
+        Log.i("does this work", CartItemList.size() + "");
+        cartLV.setAdapter(adapter);
+
+
          database = FirebaseDatabase.getInstance();
-        //ref = database.getReference("cart");
-        //ref = database.getReference("cart");
+        ref = database.getReference("Cart");
+        ref = database.getReference("Cart");
         //database = FirebaseDatabase.getInstance();
 
-         ref = FirebaseDatabase.getInstance().getReference().child("cart");
+        // ref = FirebaseDatabase.getInstance().getReference().child("Cart");
 
         FirebaseListOptions<CartItem> options = new FirebaseListOptions.Builder<CartItem>()
                 .setLayout(android.R.layout.simple_list_item_1)
@@ -84,13 +89,15 @@ public class CartActivity extends AppCompatActivity {
 
 
 
-        ref.orderByChild("cart").addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.orderByChild("Cart").addValueEventListener(new ValueEventListener() {
 
 
                                                                     @Override
                                                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                        Iterable<DataSnapshot> children = snapshot.getChildren();
                                                                         CartItemList.clear();
-                                                                        for (DataSnapshot snap : snapshot.getChildren()) {
+                                                                        for (DataSnapshot snap : children) {
+                                                                            Log.i("TEST", snap.getKey());
                                                                             CartItem cartItem = snap.getValue(CartItem.class);
                                                                             CartItemList.add(cartItem);
                                                                         }
@@ -128,15 +135,17 @@ public class CartActivity extends AppCompatActivity {
     };
 
     public void populateLV() {
-        ref = database.getReference("cart");
-        cartList = new ArrayList<CartItem>();
+        ref = database.getReference("Cart");
+        CartItemList = new ArrayList<CartItem>();
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Iterable<DataSnapshot> children = snapshot.getChildren();
                 CartItemList.clear();
-                for (DataSnapshot snap : snapshot.getChildren()) {
-                    CartItem cartItem = snap.getValue(CartItem.class);
-                    CartItemList.add(cartItem);
+                for (DataSnapshot snap : children) {
+                    Log.i("TEST", snap.getKey());
+                    //CartItem cartItem = snap.getValue(CartItem.class);
+                    //CartItemList.add(cartItem);
                 }
                 // Notify the adapter that the data has changed
                 adapter.notifyDataSetChanged();

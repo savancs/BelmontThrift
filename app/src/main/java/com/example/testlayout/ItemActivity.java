@@ -98,7 +98,9 @@ public class ItemActivity extends AppCompatActivity {
     private final View.OnClickListener addListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+           //ref.push().setValue(item.getItemName());
             ref.child(ref.push().getKey()).setValue(item);
+            //ref.setValue(item);
             //int price = 5;
             //addToCart(item);
             Toast.makeText(ItemActivity.this, "Item successfully added to cart.", Toast.LENGTH_SHORT).show();
