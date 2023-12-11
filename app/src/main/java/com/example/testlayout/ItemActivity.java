@@ -30,7 +30,7 @@ public class ItemActivity extends AppCompatActivity {
     Button addToCart;
     DatabaseReference ref;
     CartItem item;
-    //FirebaseDatabase cartDB;
+
 
 
 
@@ -41,9 +41,9 @@ public class ItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //DatabaseReference ref = database.getReference("Cart");
+
         ref = database.getReference("Cart");
-        //cartDB = FirebaseDatabase.getInstance();
+
 
         item = new CartItem("Blouse", 5);
 
@@ -98,17 +98,10 @@ public class ItemActivity extends AppCompatActivity {
     private final View.OnClickListener addListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-           //ref.push().setValue(item.getItemName());
             ref.child(ref.push().getKey()).setValue(item);
-            //ref.setValue(item);
-            //int price = 5;
-            //addToCart(item);
             Toast.makeText(ItemActivity.this, "Item successfully added to cart.", Toast.LENGTH_SHORT).show();
         }
     };
 
- /*   public void addToCart(CartItem clothing){
-        ref.child(ref.push().getKey()).setValue(item);
 
-    }*/
 }

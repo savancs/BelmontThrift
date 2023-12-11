@@ -1,6 +1,7 @@
 package com.example.testlayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,118 +13,70 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.firebase.ui.database.FirebaseListAdapter;
-import com.firebase.ui.database.FirebaseListOptions;
-import com.google.firebase.Firebase;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
-
     ImageView homeIm;
-
-    private DatabaseReference ref;
-    private FirebaseDatabase database;
-    private List<CartItem> CartItemList;
-
-    //private ArrayList<CartItem> cartList;
-    //private adapter adapter;
-
-    ArrayAdapter<CartItem> adapter;
+    DatabaseReference ref;
     ListView cartLV;
+    ArrayList<String> cartList = new ArrayList<>();
+    ArrayAdapter<String> adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+
         homeIm = findViewById(R.id.chomeIV);
         homeIm.setOnClickListener(homeListener);
+
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        ref = firebaseDatabase.getReference("Cart");
+
         cartLV = (ListView) findViewById(R.id.cartLV);
-        //cartList = new ArrayList<>();
-
-        //new stuff just added
-        CartItemList = new ArrayList<>();
-        //adapter = new adapter(this, CartItemList);
-        //cartLV.setAdapter(adapter);
-
-
-
-
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, CartItemList);
-        Log.i("does this work", CartItemList.size() + "");
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cartList);
         cartLV.setAdapter(adapter);
+        ref.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                String value = snapshot.getValue(CartItem.class).toString();
+                cartList.add(value);
+                adapter.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-         database = FirebaseDatabase.getInstance();
-        ref = database.getReference("Cart");
-        ref = database.getReference("Cart");
-        //database = FirebaseDatabase.getInstance();
+            }
 
-        // ref = FirebaseDatabase.getInstance().getReference().child("Cart");
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
-        FirebaseListOptions<CartItem> options = new FirebaseListOptions.Builder<CartItem>()
-                .setLayout(android.R.layout.simple_list_item_1)
-                .setQuery(ref, CartItem.class)
-                .build();
-//        cartLV.setAdapter(new FirebaseListAdapter<CartItem>(options) {
-//
-//            @Override
-//            protected void populateView(@NonNull View v, @NonNull CartItem model, int position) {
-//                ((TextView) v.findViewById(android.R.id.text1)).setText(model.getItemName());
-//            }
-//        });
+            }
 
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-
-
-
-
-        ref.orderByChild("Cart").addValueEventListener(new ValueEventListener() {
-
-
-                                                                    @Override
-                                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                                        Iterable<DataSnapshot> children = snapshot.getChildren();
-                                                                        CartItemList.clear();
-                                                                        for (DataSnapshot snap : children) {
-                                                                            Log.i("TEST", snap.getKey());
-                                                                            CartItem cartItem = snap.getValue(CartItem.class);
-                                                                            CartItemList.add(cartItem);
-                                                                        }
-                                                                        adapter.notifyDataSetChanged();
-                                                                    }
-
-
-                                                                    //
-//                                                                              Iterable<DataSnapshot> data = snapshot.getChildren();
-//                                                                              int lastElement = (int) snapshot.getChildrenCount();
-//                                                                             Iterator<DataSnapshot> it = data.iterator();
-//                                                                              for (int i = 0; i < lastElement - 1; i++) {
-//                                                                                  String nextValue = (String) it.next().getValue();
-//                                                                                  // retrieveListFromFB.add(nextValue);
-//                                                                              }
-//                                                                             int random = rand.nextInt(retrieveListFromFB.size());
-//                                                                             String word = retrieveListFromFB.get(random);
-                                                                              // Toast.makeText(MainActivity.this, "The word is: " + word, Toast.LENGTH_SHORT).show();
-                                                                    // }
-
-                                                                    @Override
-                                                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                                                    }
-                                                                }
-        );
+            }
+        });
 
     }
     private final View.OnClickListener homeListener = new View.OnClickListener() {
@@ -134,30 +87,8 @@ public class CartActivity extends AppCompatActivity {
         }
     };
 
-    public void populateLV() {
-        ref = database.getReference("Cart");
-        CartItemList = new ArrayList<CartItem>();
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Iterable<DataSnapshot> children = snapshot.getChildren();
-                CartItemList.clear();
-                for (DataSnapshot snap : children) {
-                    Log.i("TEST", snap.getKey());
-                    //CartItem cartItem = snap.getValue(CartItem.class);
-                    //CartItemList.add(cartItem);
-                }
-                // Notify the adapter that the data has changed
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+    //implement total and subtotal
 
 
-    }
 }
 
