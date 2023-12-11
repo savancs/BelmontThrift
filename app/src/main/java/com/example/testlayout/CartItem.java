@@ -20,4 +20,8 @@ public class CartItem {
     public double getItemPrice() {
         return itemPrice;
     }
+
+    public String toString(){
+        return this.itemName + " --- $" + String.valueOf(itemPrice);
+    }
 }
