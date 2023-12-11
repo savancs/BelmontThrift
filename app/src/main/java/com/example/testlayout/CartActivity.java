@@ -28,11 +28,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
+    TextView subTTV, taxTV, totalTV;
     ImageView homeIm;
     DatabaseReference ref;
     ListView cartLV;
     ArrayList<String> cartList = new ArrayList<>();
     ArrayAdapter<String> adapter;
+    CartItem item;
+    Double price;
+    double subtotal = 0.0;
+    double tax = 0.0;
+    double total = 0.0;
 
 
     @Override
@@ -40,6 +46,9 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
+        subTTV = findViewById(R.id.subtotalVal);
+        taxTV = findViewById(R.id.taxVal);
+        totalTV = findViewById(R.id.totalVal);
         homeIm = findViewById(R.id.chomeIV);
         homeIm.setOnClickListener(homeListener);
 
@@ -49,11 +58,25 @@ public class CartActivity extends AppCompatActivity {
         cartLV = (ListView) findViewById(R.id.cartLV);
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cartList);
         cartLV.setAdapter(adapter);
+
         ref.addChildEventListener(new ChildEventListener() {
+
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String value = snapshot.getValue(CartItem.class).toString();
+
                 cartList.add(value);
+
+                item = snapshot.getValue(CartItem.class);
+                price = item.getItemPrice();
+                if(item!=null){
+                    subtotal += price;
+                }
+                tax = subtotal * .07;
+                total = subtotal + tax;
+                subTTV.setText(String.valueOf(subtotal));
+                taxTV.setText(String.valueOf(tax));
+                totalTV.setText(String.valueOf(total));
                 adapter.notifyDataSetChanged();
             }
 
